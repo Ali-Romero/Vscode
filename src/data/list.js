@@ -4,7 +4,7 @@ export default {
     folders: [
       {
         name: "icons",
-        folders:[],
+        folders: [],
         files: [
           {
             name: "close.svg",

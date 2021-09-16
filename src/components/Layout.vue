@@ -36,7 +36,7 @@
 
   &__explorer
     width: 250px
-    padding: 5px 17px
+    padding: 5px 0
     background-color: #21252b
 
   &__explorer,
