@@ -5,30 +5,34 @@
     <Item folder :deep="deep" :open="show" :icon="getFolderIcon(name)" :label="name" @click="show = !show" />
 
     <template v-if="folders.length || files.length">
-      <ul v-if="show" class="folder__list">
-        <li v-for="(folder, index) in folders" :key="index" class="folder__child folder__child--folder">
-          <FolderView
-            :name="folder.name"
-            :folders="folder.folders"
-            :files="folder.files"
-            :deep="computed_deep"
-          />
-        </li>
+      <CollapseTransition>
+        <ul v-show="show" class="folder__list">
+          <li v-for="(folder, index) in folders" :key="index" class="folder__child folder__child--folder">
+            <FolderView
+              :name="folder.name"
+              :folders="folder.folders"
+              :files="folder.files"
+              :deep="computed_deep"
+            />
+          </li>
 
-        <li v-for="(file, index) in files" :key="index" class="folder__child folder__child--file">
-          <Item :deep="computed_deep" :icon="getFileIcon(file.name)" :label="file.name" />
-        </li>
-      </ul>
+          <li v-for="(file, index) in files" :key="index" class="folder__child folder__child--file">
+            <Item :deep="computed_deep" :icon="getFileIcon(file.name)" :label="file.name" />
+          </li>
+        </ul>
+      </CollapseTransition>
     </template>
   </div>
 </template>
 
 <script>
+import CollapseTransition from '@/components/CollapseTransition'
 import Item from "@/components/Item";
 
 export default {
   name: 'FolderView',
   components: {
+    CollapseTransition,
     Item,
   },
   props: {

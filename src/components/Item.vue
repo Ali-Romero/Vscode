@@ -69,7 +69,8 @@ export default {
   transition: all 0.2s
 
   &:hover
-    background: red
+    background: #2f333d
+
 
   &__wrapper
     display: flex
@@ -95,4 +96,7 @@ export default {
     font-size: 14px
     line-height: 16px
     color: #FFFFFF
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
 </style>
