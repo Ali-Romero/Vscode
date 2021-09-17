@@ -93,9 +93,12 @@ export default {
 
 <style lang="sass">
 .layout
-  height: 100vh
+  height: 100%
+  display: flex
+  flex-direction: column
   background-color: #2f333d
   color: #FFFFFF
+  overflow: auto
 
   &__header
     height: 40px
@@ -106,7 +109,7 @@ export default {
 
   &__wrapper
     display: flex
-    height: calc(100% - 67px) // header height
+    flex: 1
 
   &__toolbar
     width: 58px
