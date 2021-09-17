@@ -46,23 +46,22 @@ export default {
   },
   data() {
     return {
-      // show: this.name === '$',
-      show: true,
+      show: this.name === '$',
       file_icons: {
         svg: 'svg.svg',
         jpeg: 'image.svg',
         jpg: 'image.svg',
         png: 'image.svg',
-        // browserslistrc: 'browserslistrc.svg',
+        browserslistrc: 'browserlist.svg',
         gitignore: 'git.svg',
         js: 'js.svg',
         json: 'nodejs.svg',
       },
       folder_icons: {
-        // assets: 'folder-assets.svg',
+        assets: 'folder-resource.svg',
         icons: 'folder-images.svg',
         backgrounds: 'folder-images.svg',
-      }
+      },
     }
   },
   computed: {
@@ -74,10 +73,19 @@ export default {
     getFileIcon(name) {
       const ext = name.split('.').pop()
 
-      return this.file_icons[ext] || 'vue.svg'
+      return this.file_icons[ext] || 'file.svg'
     },
     getFolderIcon(name) {
-      return this.folder_icons[name] || 'folder-vue.svg'
+      const icon = this.folder_icons[name] || 'folder-meta.svg'
+
+      if (this.show) {
+        const arr = icon.split('.')
+        const ext = arr.pop()
+
+        return `${arr.join('.')}-open.${ext}`
+      }
+
+      return icon
     },
   }
 }
@@ -89,12 +97,12 @@ export default {
 
   &__line
     width: 1px
-    height: calc(100% - 30px)
+    height: calc(100% - 26px)
     position: absolute
-    bottom: 0
+    bottom: 5px
     background-color: #FFFFFF
     opacity: 0.1
-    transform: translateX(17px)
+    transform: translateX(20px)
 
   &__list
     padding: 0

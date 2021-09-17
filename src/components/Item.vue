@@ -65,12 +65,11 @@ export default {
 .item
   $parent: &
 
-  padding: 0 17px
+  padding: 3px 17px
   transition: all 0.2s
 
   &:hover
-    background: #2f333d
-
+    background-color: rgba(56, 61, 75, 0.7)
 
   &__wrapper
     display: flex
@@ -92,9 +91,12 @@ export default {
   &__icon
     margin-right: 8px
 
+    img
+      display: block
+
   &__text
     font-size: 14px
-    line-height: 16px
+    line-height: 20px
     color: #FFFFFF
     white-space: nowrap
     text-overflow: ellipsis

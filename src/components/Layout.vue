@@ -1,15 +1,20 @@
 <template>
   <div class="layout">
     <header class="layout__header">
-      <img src="@/assets/icons/vscode.svg" alt="logo" width="24" height="24">
+      <div class="layout__logo">
+        <img src="@/assets/icons/vscode.svg" alt="logo" width="24" height="24" />
+      </div>
+
+      <slot name="menu" />
     </header>
+
     <div class="layout__wrapper">
       <aside class="layout__toolbar">
         <slot name="toolbar" />
       </aside>
       <aside class="layout__explorer" :style="explorer_styles">
+        <div class="layout__title">explorer</div>
         <div class="layout__resize" @mousedown="mousedown" />
-
         <div class="layout__explorer-inner" :class="explorer_classes">
           
           <slot name="explorer" />
@@ -19,6 +24,18 @@
         <slot name="main" />
       </main>
     </div>
+
+    <footer class="layout__footer">
+      <div class="footer">
+        <div class="footer__item">
+          <div class="footer__icon">
+            <img src="@/assets/icons/footer-icon.svg" alt="footer-icon" width="16" height="16" />
+          </div>
+          <div class="footer__description">Visual Studio Code*
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -81,21 +98,32 @@ export default {
   color: #FFFFFF
 
   &__header
-    background-color: #282c34
-    padding: 5px 15px
+    height: 40px
+    display: flex
+    background: linear-gradient(90deg, rgba(40,44,52,1) 0%, rgba(0,212,255,0) 26%)
+    padding: 0 15px
+    box-shadow: 1px 10px 13px -1px rgba(72, 82, 109, 0.2)
 
   &__wrapper
     display: flex
-    height: calc(100% - 38px) // header height
+    height: calc(100% - 67px) // header height
 
   &__toolbar
-    width: 47px
+    width: 58px
+
+  &__title
+    padding: 16px 24px
+    text-transform: uppercase
+
+  &__logo
+    align-self: center
+    margin-right: 21px
 
   &__explorer
+    flex: 1
     position: relative
-    padding: 5px 0
-    background-color: #21252b
-  
+    background-color: #21252B
+
   &__explorer-inner
     max-height: 100%
     user-select: none
@@ -104,6 +132,7 @@ export default {
       pointer-events: none
 
   &__resize
+    display: none
     width: 5px
     height: 100%
     position: absolute
@@ -124,5 +153,37 @@ export default {
     overflow: auto
 
   &__main
+    display: none
     flex: 1
+
+.footer
+  padding-left: 16px
+  height: 27px
+  background-color: #21252B
+  display: flex
+  align-items: center
+
+  &__item
+    display: flex
+    align-items: center
+    font-size: 13px
+    color: #9AA5B8
+    cursor: context-menu
+
+    &:hover
+      text-shadow: 0px 0px 6px rgba(144,160,163,0.97)
+
+  &__icon
+    margin-right: 6px
+
+@media (min-width: 600px)
+  .layout
+    &__explorer
+      flex: none
+
+    &__main
+      display: block
+
+    &__resize
+      display: block
 </style>
